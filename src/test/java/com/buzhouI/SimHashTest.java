@@ -19,4 +19,14 @@ public class SimHashTest {
         for (String string : strings)
             System.out.println(string);
     }
+
+    @Test
+    public void hashTest(){
+        String[] strings = {"一位","真正","的","作家"};
+        for (String string : strings){
+            String hash = SimHash.hash(string);
+            System.out.println(hash);
+            System.out.println(hash.length());
+        }
+    }
 }

@@ -1,6 +1,8 @@
 package com.buzhouI;
 
 import java.io.*;
+import java.math.BigInteger;
+import java.security.MessageDigest;
 
 public class SimHash {
 
@@ -26,8 +28,14 @@ public class SimHash {
         return str;
     }
 
-    private static String hash(String str){
-        return null;
+    public static String hash(String str){//hash步骤，这里利用MD5获得hash值
+        try{
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            return new BigInteger(1,md.digest(str.getBytes("UTF-8"))).toString(2);
+        }catch(Exception e){
+            e.printStackTrace();
+            return str;
+        }
     }
 
     public static String getSimHash(String str){
