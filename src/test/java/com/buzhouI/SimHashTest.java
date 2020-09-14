@@ -29,4 +29,12 @@ public class SimHashTest {
             System.out.println(hash.length());
         }
     }
+
+    @Test
+    public void getSimHashTest(){
+        String str0 = SimHash.readTxt("D:/test/sim/orig.txt");
+        String str1 = SimHash.readTxt("D:/test/sim/orig_0.8_add.txt");
+        System.out.println(SimHash.getSimHash(str0));
+        System.out.println(SimHash.getSimHash(str1));
+    }
 }

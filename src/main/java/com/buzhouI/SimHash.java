@@ -1,8 +1,12 @@
 package com.buzhouI;
 
+import com.hankcs.hanlp.HanLP;
+import org.wltea.analyzer.IKSegmentation;
+
 import java.io.*;
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.util.List;
 
 public class SimHash {
 
@@ -39,13 +43,39 @@ public class SimHash {
     }
 
     public static String getSimHash(String str){
+        int[] v = new int[128];//用数组表示特征向量,取128位,从0 1 2 位开始表示从高位到低位
         //1.分词
+        List<String> keywordList = HanLP.extractKeyword(str,str.length());//取出所有关键词
         //2.hash
-        hash(str);
-        //3.加权
-        //4.合并
+        for(String keyword : keywordList){
+            String kwHash = hash(keyword);
+
+            if (kwHash.length() < 128){//hash值可能少于128位，在低位以0补齐
+                int dif = 128 - kwHash.length();
+                for(int i = 0; i < dif; i++){
+                    kwHash += "0";
+                }
+            }
+
+            //3.加权
+            //4.合并
+            for(int i = 0; i < v.length; i++){
+                if(kwHash.charAt(i) == '1'){//权重未实现！
+                    v[i]++;
+                }else{
+                    v[i]--;
+                }
+            }
+        }
+
         //5.降维
-        return null;
+        String simHash = "";//储存返回的simHash值
+        for (int i = 0; i < v.length; i++){//从高位遍历到低位
+            if(v[i] <= 0) simHash += "0";
+            else          simHash += "1";
+        }
+
+        return simHash;
     }
 
     public static void main(String[] args){
