@@ -37,4 +37,25 @@ public class SimHashTest {
         System.out.println(SimHash.getSimHash(str0));
         System.out.println(SimHash.getSimHash(str1));
     }
+
+    @Test
+    public void AllTest(){
+        String[] str = new String[10];
+        str[0] = SimHash.readTxt("D:/test/sim/orig.txt");
+        str[1] = SimHash.readTxt("D:/test/sim/orig_0.8_add.txt");
+        str[2] = SimHash.readTxt("D:/test/sim/orig_0.8_del.txt");
+        str[3] = SimHash.readTxt("D:/test/sim/orig_0.8_dis_1.txt");
+        str[4] = SimHash.readTxt("D:/test/sim/orig_0.8_dis_3.txt");
+        str[5] = SimHash.readTxt("D:/test/sim/orig_0.8_dis_7.txt");
+        str[6] = SimHash.readTxt("D:/test/sim/orig_0.8_dis_10.txt");
+        str[7] = SimHash.readTxt("D:/test/sim/orig_0.8_dis_15.txt");
+        str[8] = SimHash.readTxt("D:/test/sim/orig_0.8_mix.txt");
+        str[9] = SimHash.readTxt("D:/test/sim/orig_0.8_rep.txt");
+
+        for(int i = 1; i <= 9; i++){
+            int hmDistance = Hamming.getDistance(SimHash.getSimHash(str[0]),SimHash.getSimHash(str[i]));
+            System.out.println("str0和str"+i+"的汉明距离: " + hmDistance + " 相识度: " + (100-hmDistance*100/128)+"%");
+        }
+
+    }
 }
