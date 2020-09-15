@@ -37,11 +37,12 @@ public class TxtIO {
      * @param name
      */
     public static void writeTxt(double elem,String name){
+        String ans = Double.toString(elem);
         File file = new File(name);
         FileWriter fw = null;
         try {
             fw = new FileWriter(file,true);
-            fw.write(Double.toString(elem));
+            fw.write(ans,0,(ans.length()>3?4:ans.length()));
             fw.write("\r\n");
             fw.close();
         } catch (IOException e) {

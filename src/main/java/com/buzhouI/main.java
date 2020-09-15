@@ -7,5 +7,6 @@ public class main {
         String ansFileName = args[2];
         double ans = Hamming.getSimilarity(SimHash.getSimHash(str0),SimHash.getSimHash(str1));
         TxtIO.writeTxt(ans,ansFileName);
+        System.exit(0);
     }
 }

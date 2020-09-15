@@ -19,4 +19,17 @@ public class TxtIOTest {
             TxtIO.writeTxt(elem[i],"D:/test/sim/ans.txt");
         }
     }
+
+    @Test
+    public void readTxtFailTest(){
+        String str = TxtIO.readTxt("D:/test/sim/none.txt");
+    }
+
+    @Test
+    public void writeTxtFailTest(){
+        double[] elem = {0.11,0.22,0.33,0.44,0.55};
+        for(int i = 0; i < elem.length; i++){
+            TxtIO.writeTxt(elem[i],"User:/test/sim/ans.txt");
+        }
+    }
 }

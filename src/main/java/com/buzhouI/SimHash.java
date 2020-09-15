@@ -2,7 +2,6 @@ package com.buzhouI;
 
 import com.hankcs.hanlp.HanLP;
 
-import java.io.*;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.List;
@@ -31,8 +30,16 @@ public class SimHash {
      */
     public static String getSimHash(String str){
         int[] v = new int[128];//用数组表示特征向量,取128位,从0 1 2 位开始表示从高位到低位
+
+        try{
+            if(str.length() < 200) throw new ShortStringException("文本过短！");
+        }catch (ShortStringException e){
+            e.printStackTrace();
+            return null;
+        }
+
         //1.分词
-        List<String> keywordList = HanLP.extractKeyword(str,str.length());//取出所有关键词
+        List<String> keywordList = HanLP.extractKeyword(str, str.length());//取出所有关键词
 
         //2.hash
         int i = 0, size = keywordList.size();//以i做外层循环

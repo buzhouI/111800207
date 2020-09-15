@@ -26,6 +26,11 @@ public class SimHashTest {
     }
 
     @Test
+    public void shortStringSimHashTest(){//测试str.length()<200的情况
+        System.out.println(SimHash.getSimHash("一位正真的作家"));
+    }
+
+    @Test
     public void AllTest(){
         String[] str = new String[10];
         str[0] = TxtIO.readTxt("D:/test/sim/orig.txt");
@@ -39,7 +44,7 @@ public class SimHashTest {
         str[8] = TxtIO.readTxt("D:/test/sim/orig_0.8_mix.txt");
         str[9] = TxtIO.readTxt("D:/test/sim/orig_0.8_rep.txt");
 
-        for(int i = 1; i <= 9; i++){
+        for(int i = 0; i <= 9; i++){
             int hmDistance = Hamming.getDistance(SimHash.getSimHash(str[0]),SimHash.getSimHash(str[i]));
             System.out.println("str0和str"+i+"的汉明距离: " + hmDistance + " 相识度: " + (100-hmDistance*100/128)+"%");
         }
