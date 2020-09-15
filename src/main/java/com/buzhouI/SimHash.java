@@ -9,28 +9,11 @@ import java.util.List;
 
 public class SimHash {
 
-    public static String readTxt(String name) {
-        String str = "";
-        String str_line;
-
-        //将txt文件按行读入str中
-        File file = new File(name);
-        FileReader fr = null;
-        try {
-            fr = new FileReader(file);
-            BufferedReader bufr = new BufferedReader(fr);
-            while ((str_line = bufr.readLine())!=null)
-                str += str_line;
-
-            bufr.close();
-            fr.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return str;
-    }
-
+    /**
+     * 传入String，计算出它的hash值，并以字符串形式输出
+     * @param str
+     * @return str
+     */
     public static String hash(String str){//hash步骤，这里利用MD5获得hash值
         try{
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -41,6 +24,11 @@ public class SimHash {
         }
     }
 
+    /**
+     * 传入String,计算出它的simHash值，并以字符串形式输出
+     * @param str
+     * @return simHash
+     */
     public static String getSimHash(String str){
         int[] v = new int[128];//用数组表示特征向量,取128位,从0 1 2 位开始表示从高位到低位
         //1.分词
@@ -81,11 +69,4 @@ public class SimHash {
         return simHash;
     }
 
-    public static void main(String[] args){
-        String str1 = readTxt("");
-        String str2 = readTxt("");
-        String simHash1 = getSimHash(str1);
-        String simHash2 = getSimHash(str2);
-        int distance = Hamming.getDistance(simHash1,simHash2);
-    }
 }
