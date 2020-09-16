@@ -21,7 +21,7 @@ public class SimHash {
             e.printStackTrace();
             return str;
         }
-    }
+}
 
     /**
      * 传入String,计算出它的simHash值，并以字符串形式输出

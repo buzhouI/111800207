@@ -32,21 +32,24 @@ public class SimHashTest {
 
     @Test
     public void AllTest(){
+        String[] fileName = new String[10];
+        fileName[0] = ("orig.txt");
+        fileName[1] = ("orig_0.8_add.txt");
+        fileName[2] = ("orig_0.8_del.txt");
+        fileName[3] = ("orig_0.8_dis_1.txt");
+        fileName[4] = ("orig_0.8_dis_3.txt");
+        fileName[5] = ("orig_0.8_dis_7.txt");
+        fileName[6] = ("orig_0.8_dis_10.txt");
+        fileName[7] = ("orig_0.8_dis_15.txt");
+        fileName[8] = ("orig_0.8_mix.txt");
+        fileName[9] = ("orig_0.8_rep.txt");
+
         String[] str = new String[10];
-        str[0] = TxtIO.readTxt("D:/test/sim/orig.txt");
-        str[1] = TxtIO.readTxt("D:/test/sim/orig_0.8_add.txt");
-        str[2] = TxtIO.readTxt("D:/test/sim/orig_0.8_del.txt");
-        str[3] = TxtIO.readTxt("D:/test/sim/orig_0.8_dis_1.txt");
-        str[4] = TxtIO.readTxt("D:/test/sim/orig_0.8_dis_3.txt");
-        str[5] = TxtIO.readTxt("D:/test/sim/orig_0.8_dis_7.txt");
-        str[6] = TxtIO.readTxt("D:/test/sim/orig_0.8_dis_10.txt");
-        str[7] = TxtIO.readTxt("D:/test/sim/orig_0.8_dis_15.txt");
-        str[8] = TxtIO.readTxt("D:/test/sim/orig_0.8_mix.txt");
-        str[9] = TxtIO.readTxt("D:/test/sim/orig_0.8_rep.txt");
 
         for(int i = 0; i <= 9; i++){
+            str[i] = TxtIO.readTxt("D:/test/sim/"+fileName[i]);
             int hmDistance = Hamming.getDistance(SimHash.getSimHash(str[0]),SimHash.getSimHash(str[i]));
-            System.out.println("str0和str"+i+"的汉明距离: " + hmDistance + " 相识度: " + (100-hmDistance*100/128)+"%");
+            System.out.println(fileName[0]+" 和 "+fileName[i]+"\n\t\t\t汉明距离: " + hmDistance + " 相似度: " + (100-hmDistance*100/128)+"%");
         }
 
     }
