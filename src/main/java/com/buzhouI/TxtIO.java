@@ -11,19 +11,21 @@ public class TxtIO {
      */
     public static String readTxt(String name) {
         String str = "";
-        String str_line;
+        String strLine;
 
         //将txt文件按行读入str中
         File file = new File(name);
-        FileReader fr = null;
+        FileInputStream fis = null;
         try {
-            fr = new FileReader(file);
-            BufferedReader bufr = new BufferedReader(fr);
-            while ((str_line = bufr.readLine())!=null)
-                str += str_line;
+            fis = new FileInputStream(file);
+            InputStreamReader reader = new InputStreamReader(fis,"UTF-8");
+            BufferedReader bufr = new BufferedReader(reader);
+            while ((strLine = bufr.readLine())!=null)
+                str += strLine;
 
+            reader.close();
             bufr.close();
-            fr.close();
+            fis.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
